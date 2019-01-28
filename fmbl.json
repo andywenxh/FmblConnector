@@ -1,0 +1,69 @@
+{
+  "header": {
+    "facility": "AUD",
+    "log_group": "FML",
+    "activity": "GRS",
+    "Severity": "LOG_INFO",
+    "transaction_ID": "93812b1e-a04f-4668-9163-e1431d2ca9c8"
+  },
+  "TransientData": {
+  
+    "Transaction_Flow": {
+      "delivery_Method": "Gateway",
+      "gateway_End_Time": "2019-01-22 20:04:10.904",
+      "gateway_Start_Time": "2019-01-22 20:04:10.410",
+      "global_ID": "93812b1e-a04f-4668-9163-e1431d2ca9c8",
+      "global_ID_Assigner": "Adapter",
+      "HIB_End_Time": "",
+      "HIB_Start_Time": "",
+      "is_Asynchronous": "false",
+      "request_Message_Size": "2506",
+      "response_Message_Size": "1355",
+      "message_ID": "6bff7863-2b60-4b0d-a33d-c067d3dee2b4",
+      "operation": "PostPractitionerIdentity",
+      "originating_System": "/DC=ssh/DC=subscribers/OU=Subscribers/OU=eHealthUsers/OU=Applications/CN=BLUEWATER1.NODE",
+      "response_Delivery_Endpoint": "",
+      "response_Message_ID": "uuid:2e58d8e2-ba81-41bd-b257-e1431d2c3998",
+      "response_URL": "",
+      "consumer_Organization": "",
+      "consumer_System": "",
+      "consumer": "",
+      "sequence_ID": "21",
+      "service_Name": "OneIDIdentityPractitionerService",
+      "service_Version": "1.0",
+      "SLA": "OneIDIdentityPractitionerService_STD",
+      "transaction_ID": "93812b1e-a04f-4668-9163-e1431d2ca9c8",
+      "consumer_Message_ID": "6bff7863-2b60-4b0d-a33d-c067d3dee2b4",
+      "eHealth_Transaction_ID": "93812b1e-a04f-4668-9163-e1431d2ca9c8",
+      "LOB_Repository_ID": ""
+    },
+    "Policy_And_Rules": [
+      {
+        "policy_Name": "RestfulSecurityContextPolicy_Default_91c9f6a3-6a51-45eb-a7f5-487e3533841b",
+        "policy_Type": "",
+        "rule_Response": ""
+      },
+
+      {
+        "policy_Name": "FMBLGatewayError_Y_19ac4b00-3b25-11e7-b585-eb3826b93faf_6cf8abde-2d90-4bb9-8d68-b21b90dc284c",
+        "policy_Type": "WS-Mediation",
+        "rule_Response": ""
+      }
+    ],
+    "Security_Context": {
+      "on_Behalf_Of": "not available for R1b",
+      "authentication_Level": "placeholder",
+      "authentication_Result": "Passed",
+      "authentication_Result_Expiry": "",
+      "authorization_Result": "Permit",
+      "authorization_Result_Expiry": "",
+      "SAML_Token_Issuer": "",
+      "authenticated_System": "Place Holder",
+      "originating_System": "/DC=ssh/DC=subscribers/OU=Subscribers/OU=eHealthUsers/OU=Applications/CN=BLUEWATER1.NODE",
+      "under_Authority_Of": "",
+      "user_Subject": "",
+      "list_Of_Obligations": "cm9sZT1BdXRoZW50aWNhdGVkVXNlcjtyb2xlPUNSX1JTMTtyb2xlPVNBTF9BTDI7cm9sZT1QQ1JfRGlyZWN0X0NvbnN1bWVyO3JvbGU9UENSX2VIUl9QYXJ0bmVyO3JvbGU9Q1JfUlMxX3BhcnQzO3JvbGU9Q1JfUlMxX3BhcnQyO2RlY2lzaW9uVGltZT0yMDE3LTA5LTIxVDEzOjA4OjIwLjQzMVo7TWF4aW11bVJlc3VsdFNldD01O2xkYXBfYnVsa190b3N0cmluZz1MREFQe3VyUm9sZUNsYXNzQ29kZT0gW0hPU10sIHVyUm9sZU11bmljaXBhbGl0eT0gW05FV01BUktFVF0sIHVyVXBpQ29kZT0gWzE2MDA2NDcwMzMwMV0sIHVyUGhpcGFDbGFzc0NvZGU9IFtIT1NdLCBvPSBbSG9zcGl0YWwgMV0sIG9iamVjdENsYXNzPSBbdG9wLG9yZ2FuaXphdGlvbix1clByb3ZpZGVyT3JnYW5pemF0aW9uXSwgdXJPcmdTdGF0dXNDb2RlPSBbWV0sIHVyT3JnTGVnYWxOYW1lPSBbSG9zcGl0YWwgMV0sIHVyT3JnU2hvcnROYW1lPSBbXX07TWluaW11bVNjb3JlPTA="
+    }
+  },
+  "MsgPayload": "6Qm9keT48L3NvYXAxMjpFbnZlbG9wZT4="
+}
