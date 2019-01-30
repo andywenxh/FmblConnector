@@ -39,13 +39,10 @@ public class FmblFileProcessor {
     	String activity = fmblMessage.getHeader().getActivity();
     	
     	String folderName = String.format("%s/%04d%02d%02d/%02d%02d", fmblFolder, year, month, day, hour, minute); 
-    	createFolder(folderName);
+    	createFolder(folderName);    	
+    	String fileName =   String.format("%s/fmbl-%s-%s-%03d.txt", folderName, txnId, activity, millis );  	
     	
-    	String fileName =   String.format("%s/fmbl-%s-%s-%03d.txt", folderName, txnId, activity, millis );
-    	
-    	
-    	Path path = Paths.get(fileName);
-    	
+    	Path path = Paths.get(fileName);    	
     	Files.write(path, fmblMessage.getMsgPayload().getBytes());
     	
     	return fileName;
@@ -78,16 +75,6 @@ public class FmblFileProcessor {
     	String folderName = String.format("%s/%04d%02d%02d/%02d%02d",
     			                        fmblFolder, year, month, day, hour, minute); //, txnId, activity, millis );   
     	System.out.println(folderName);
-
-//    	Path path = Paths.get("c:/tmp/question3.txt");
-//    	
-//    		 
-//    	
-//    	String question = "To be or not to be?";
-//    	
-//    		     
-//    	
-//    		Files.write(path, question.getBytes());    	
     	
     }
 

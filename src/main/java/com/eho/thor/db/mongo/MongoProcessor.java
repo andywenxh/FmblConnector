@@ -5,7 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bson.Document;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import com.eho.thor.connector.FmblSinkTask;
 import com.eho.thor.db.DBProcessor;
 import com.eho.thor.json.FmblMessage;
 import com.eho.thor.json.HialRecord;
@@ -19,6 +22,7 @@ public class MongoProcessor implements DBProcessor{
 	
 	private static final MongoProcessor instance = new MongoProcessor();
 	
+    private static final Logger log = LoggerFactory.getLogger(FmblSinkTask.class);
 	
 	private static MongoClient mongoClient = null;
 	
@@ -47,17 +51,39 @@ public class MongoProcessor implements DBProcessor{
         String txnId = fmblMessage.getHeader().getTransaction_ID();
         String activity = fmblMessage.getHeader().getActivity();
 
-        this.saveRecordToCollection(mongoDatabase, fmblMessage.getTransientData().getTransaction_Flow(), "transactionFlow", txnId);
-        this.saveRecordToCollection(mongoDatabase, fmblMessage.getTransientData().getSecurity_Context(), "securityContext", txnId);       
-        if( fmblMessage.getTransientData().getError() != null && fmblMessage.getTransientData().getError().getBusiness_Error()!=null) {
-        	this.saveRecordToCollection(mongoDatabase, fmblMessage.getTransientData().getError().getBusiness_Error(), "businessError", txnId);      
-        }
+        // save the file information into database
+        this.saveFmblFilePath(mongoDatabase,  fmblMessage,   fmblFullName);
+        
+        // save the transient data only for response flow or error flow
+        if( ! "GRQ".equals(activity)) {
+        	this.saveRecordToCollection(mongoDatabase, fmblMessage.getTransientData().getTransaction_Flow(), "transactionFlow", txnId);
+        	this.saveRecordToCollection(mongoDatabase, fmblMessage.getTransientData().getSecurity_Context(), "securityContext", txnId);       
+        	if( fmblMessage.getTransientData().getError() != null && fmblMessage.getTransientData().getError().getBusiness_Error()!=null) {
+        		this.saveRecordToCollection(mongoDatabase, fmblMessage.getTransientData().getError().getBusiness_Error(), "businessError", txnId);      
+        	}
+        	
+        	if( fmblMessage.getTransientData().getPolicy_And_Rules() != null ) {
+        		this.saveRecordsToCollection(mongoDatabase, fmblMessage.getTransientData().getPolicy_And_Rules(), "policyAndRules", txnId);
+        	}
+        }        
+ 	}
 
-        if( fmblMessage.getTransientData().getPolicy_And_Rules() != null ) {
-        	this.saveRecordsToCollection(mongoDatabase, fmblMessage.getTransientData().getPolicy_And_Rules(), "policyAndRules", txnId);
-        }
+	private void saveFmblFilePath(MongoDatabase mongoDatabase, FmblMessage fmblMessage, String fmblFullName) {		
+		
+        Document document = new Document();
+       	document.append("Transaction_ID", fmblMessage.getHeader().getTransaction_ID());
+       	document.append("FmblFileName", fmblFullName );
+       	
+        List<Document> documents = new ArrayList<Document>();  
+        documents.add(document);  
+        
+        MongoCollection<Document> collection = mongoDatabase.getCollection("fullMessageBodyLog");
+        collection.insertMany(documents);	
+        
+        log.warn("write to record for file name: " + fmblFullName);
+        
+        
 	}
-	
 
 
 	private void populateDocument(Document document, Object jsonObject) throws IllegalAccessException {

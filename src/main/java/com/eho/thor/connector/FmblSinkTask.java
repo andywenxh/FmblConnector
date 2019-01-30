@@ -59,12 +59,6 @@ public class FmblSinkTask extends SinkTask {
     	log.warn(msg);
     }
 
-// for testing
-//    public FmblSinkTask(PrintStream outputStream) {
-//        filename = null;
-//        this.outputStream = outputStream;
-//    }
-
     @Override
     public String version() {
         return new FmblSinkConnector().version();
