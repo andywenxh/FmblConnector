@@ -6,11 +6,6 @@
 	<artifactId>FmblConnector</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<dependencies>
-
-  <properties>
-    <maven.compiler.source>1.6</maven.compiler.source>
-    <maven.compiler.target>1.6</maven.compiler.target>
-  </properties>		
 		
 		<dependency>
 			<groupId>org.reflections</groupId>
@@ -88,6 +83,11 @@
 		</dependency>
 
 -->
+		
+  <properties>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+  </properties>			
 
 	</dependencies>
 </project>
